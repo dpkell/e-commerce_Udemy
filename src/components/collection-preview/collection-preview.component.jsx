@@ -8,6 +8,9 @@ const CollectionPreview = ({ title, items }) => (
         <h1 className="title">{title.toUpperCase()}</h1>
         <div className="preview">
             {
+                // Below takes the items props (via shop page and SHOP_DATA Collection) and firstly filters so only 4 items are displayed
+                // at a time from the items props, from there it maps the items prop array and maps them by id to CollectionItem comp.
+                
                 items
                     .filter((item, idx) => idx < 4 )
                     .map(({id, ...otherItemProps}) => (

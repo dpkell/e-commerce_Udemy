@@ -1,22 +1,14 @@
 import React from 'react';
 
-import './custom-button.styles.scss';
+
+import { CustomButtonContainer } from './custom-button.styles';
 
 // This component receives the children elements of the form and any other necessary properties (such as type) and acts upon it based upon
 // relative properties; such as type="submit" that is supplied via the ...otherProps spread operator.
-const CustomButton = ({
-    children, 
-    isGoogleSignIn,
-    inverted, 
-    ...otherProps }) => (
-    <button 
-        className={`${inverted ? 'inverted' : ''} ${
-            isGoogleSignIn ? 'google-sign-in' : ''
-        } custom-button`} 
-        {...otherProps}
-    >
+const CustomButton = ({children, ...otherProps}) => (
+    <CustomButtonContainer  {...otherProps} >
         {children}
-    </button>
+    </CustomButtonContainer>
 );
 
 export default CustomButton;

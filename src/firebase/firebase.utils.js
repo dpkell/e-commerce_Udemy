@@ -70,8 +70,17 @@ export const convertCollectionsSnapshotToMap = (collections) => {
     return transformedCollection.reduce((accumulator, collection) =>{
         accumulator[collection.title.toLowerCase()] = collection;
         return accumulator;
-    } , {})
+    } , {});
 };
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        }, reject);
+    });
+}
 
 // Initialize the app to firebase.
 firebase.initializeApp(config);
@@ -81,10 +90,10 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 // Declaration of sign-in with Google authorization using a google account.
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'});
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt: 'select_account'});
 
 // Export of previous sign-in declaration as a parameter for auth() function.
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;

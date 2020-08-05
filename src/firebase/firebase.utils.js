@@ -14,8 +14,10 @@ const config = {
     measurementId: "G-Q1LR49PB5L"
 };
 
-/* Asynchronous function that checks the Firebase Database if a user already exists within the database using a snapshot, if there is no
-   entry within the database, add the user to the database. */
+/* 
+    Asynchronous function that checks the Firebase Database if a user already exists within the database using a snapshot, if there is no
+    entry within the database, add the user to the database. 
+*/
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
 
@@ -67,7 +69,7 @@ export const convertCollectionsSnapshotToMap = (collections) => {
         }
     });
 
-    return transformedCollection.reduce((accumulator, collection) =>{
+    return transformedCollection.reduce((accumulator, collection) => {
         accumulator[collection.title.toLowerCase()] = collection;
         return accumulator;
     } , {});
